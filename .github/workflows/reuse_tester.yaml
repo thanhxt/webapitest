@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on:
-      - codebuild-pulse-application-pipeline-stack-pulse-powerbi-pullrequest-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-Webapitest-${{ github.run_id }}-${{ github.run_attempt }}
       
     steps:
       - name: checkout
