@@ -6,6 +6,10 @@ on:
         description: 'The .NET SDK version to use for testing'
         type: string
         required: true
+    secrets:
+      GHE_PAT_TOKEN:
+        required: true
+
 jobs:
   test:
     runs-on:
