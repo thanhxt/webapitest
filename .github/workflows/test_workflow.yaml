@@ -1,12 +1,13 @@
 name: CI-Test-Workflow
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+
 jobs:
-    test:
-        uses: ./.github/workflows/reuse_tester.yaml
-        with:
-            dotnet-version: '10.0'
-         
-            
+  test:
+    uses: ./.github/workflows/reuse_tester.yaml
+    with:
+      dotnet-version: '10.0'
+    secrets:
+      GHE_PAT_TOKEN: ${{ secrets.GHE_PAT_TOKEN }}
