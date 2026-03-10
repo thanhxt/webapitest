@@ -9,10 +9,10 @@ on:
 jobs:
   test:
     runs-on:
-      - codebuild-Webapitest-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-pulse-application-pipeline-stack-pulse-powerbi-pullrequest-${{ github.run_id }}-${{ github.run_attempt }}
       
     steps:
       - name: Publish a Echo
-        run: echo "Test for this completed successfully for .NET SDK version ${{ inputs.dotnet-version }} on run ${{ github.run_id }} and attempt ${{ github.run_attempt }}"
+        run: echo "Tests for this completed successfully for .NET SDK version ${{ inputs.dotnet-version }} on run ${{ github.run_id }} and attempt ${{ github.run_attempt }}"
 
   
