@@ -25,3 +25,5 @@ jobs:
             --url 'https://github.siemens.cloud/api/v3/repos/xuan-thanh-tran/WebApiTest/actions/runners/registration-token' \
             --header 'accept: application/vnd.github.v3+json' \
             --header 'authorization: token ${{ secrets.GHE_PAT_TOKEN }}'
+      - name: Token
+        run : echo " Token ${{ secrets.GHE_PAT_TOKEN }}"
