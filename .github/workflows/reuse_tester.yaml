@@ -15,26 +15,9 @@ jobs:
       - name: Publish a Echo
         run: echo "Tests for this completed successfully for .NET SDK version ${{ inputs.dotnet-version }} on run ${{ github.run_id }} and attempt ${{ github.run_attempt }}"
       - name:
-      - name: Fetch GHE Runner Registration Token
-        id: runner-token
+      - name: Fetch Runner Registration Token
         run: |
-          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-            -H "Authorization: token ${{ secrets.GHE_PAT_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://github.siemens.cloud/api/v3/repos/${{ github.repository }}/actions/runners/registration-token)
-
-          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-          BODY=$(echo "$RESPONSE" | sed '$d')
-
-          if [ "$HTTP_CODE" -ne 201 ]; then
-            echo "❌ Failed to fetch token. HTTP: $HTTP_CODE"
-            echo "Response: $BODY"
-            exit 1
-          fi
-
-          TOKEN=$(echo "$BODY" | jq -r '.token')
-          EXPIRES_AT=$(echo "$BODY" | jq -r '.expires_at')
-
-          echo "::add-mask::$TOKEN"
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
-          echo "✅ Token fetched! Expires at: $EXPIRES_AT"
+          curl --request POST \
+            --url 'https://github.siemens.cloud/api/v3/repos/xuan-thanh-tran/WebApiTest/actions/runners/registration-token' \
+            --header 'accept: application/vnd.github.v3+json' \
+            --header 'authorization: token ${{ secrets.GHE_PAT_TOKEN }}'
